@@ -1,0 +1,147 @@
+/* === RESET === */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === PAGE STYLING === */
+body {
+  font-family: system-ui, sans-serif;
+  min-height: 100vh;
+  padding: 2rem;
+  background: #f0f0f0;
+  color: #333;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+}
+
+/* === THE PAGE (HOLY GRAIL) === */
+.page {
+  background: #fff;
+  border: 3px solid #333;
+  border-radius: 8px;
+  /* Fill the viewport height. The 4rem subtracts the body's
+     2rem top + 2rem bottom padding so the page doesn't overflow
+     and cause a scrollbar. If you change body's padding, update
+     this number to match. */
+  min-height: calc(100vh - 4rem);
+  padding: 1rem;
+
+  /* STEP 1 — Turn on Grid */
+  display: grid;
+
+  /* STEP 2 — Define Your Columns */
+  grid-template-columns: 1fr 3fr 1fr;
+
+  /* STEP 3 — Add Rows and Gaps */
+  grid-template-rows: auto 1fr auto;
+  gap: 16px;
+
+  /* STEP 5 — Name Your Areas */
+  grid-template-areas:
+    "header header header"
+    "nav    main   aside"
+    "footer footer footer";
+}
+
+/* === PAGE REGIONS === */
+.header,
+.nav,
+.main,
+.aside,
+.footer {
+  padding: 1rem;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.header {
+  background: #e06c75;
+
+  /* STEP 4 — Span Items Across Tracks */
+  grid-column: 1 / -1;
+
+  /* STEP 5 — Assign the Header to Its Area */
+  grid-area: header;
+}
+
+.nav {
+  background: #61afef;
+  /* STEP 5 — grid-area: nav; */
+  grid-area: nav;
+}
+
+.main {
+  background: #98c379;
+  /* STEP 5 — grid-area: main; */
+  grid-area: main;
+}
+
+.aside {
+  background: #e5c07b;
+  /* STEP 5 — grid-area: aside; */
+  grid-area: aside;
+}
+
+.footer {
+  background: #c678dd;
+  /* STEP 4 — grid-column: 1 / -1; */
+  grid-column: 1 / -1;
+  /* STEP 5 — grid-area: footer; */
+  grid-area: footer;
+}
+
+.nav ul {
+  list-style: none;
+}
+
+.nav a {
+  color: #fff;
+}
+
+/* === THE CARD GALLERY (lives inside .main) === */
+.cards {
+  margin-top: 1.5rem;
+
+  /* STEP 6 — Responsive Cards, No Media Queries */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: #fff;
+  border: 3px solid #333;
+  border-radius: 8px;
+  padding: 1rem;
+  color: #333;
+}
+
+/* The bottom row of each card: a tag on the left, a link on
+   the right. Base styles only — laid out with flex below. */
+.card-footer {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #ddd;
+
+  /* STEP 7 — Grid and Flex, Working Together */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tag {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: #eee;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
